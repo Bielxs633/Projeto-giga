@@ -1,0 +1,122 @@
+    * {
+        margin: 0;
+        box-sizing: border-box;
+        padding: 0;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #ECDFF2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        display: flex;
+        padding: 20px;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    .image-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #E1CAEC;
+        width: 600px;
+        height: 600px;
+        border-radius: 50px;
+    }
+
+    .image-section img {
+        width: 550px;
+        height: 550px;
+        object-fit: contain;
+    }
+
+    .recuperar-section {
+        text-align: center;
+        padding: 40px;
+        width: 100%;
+        max-width: 500px;
+    }
+
+    h2 {
+        font-size: 42px;
+        color: #53136C;
+        padding: 10px;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    p {
+        padding: 10px 25px;
+        color: #333;
+        margin-bottom: 30px;
+        font-weight: 400;
+        line-height: 1.5;
+    }
+
+    .form-step {
+        display: none;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form-step.active {
+        display: flex;
+    }
+
+    input {
+        background-color: transparent;
+        padding: 15px 20px;
+        border: 1px solid #53136C;
+        border-radius: 25px;
+        font-size: 16px;
+        width: 100%;
+        font-family: 'Inter', sans-serif;
+    }
+
+    button {
+        background: #53136C;
+        color: white;
+        border: none;
+        padding: 15px;
+        border-radius: 25px;
+        font-size: 16px;
+        cursor: pointer;
+        width: 100%;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        transition: all 0.3s;
+        margin-top: 10px;
+    }
+
+    button:hover {
+        background: rgb(64, 30, 106);
+    }
+
+    button:disabled {
+        background: #cccccc;
+        cursor: not-allowed;
+    }
+
+    .error-message {
+        color: #ff0000;
+        margin-top: 5px;
+        font-size: 14px;
+        text-align: left;
+        padding-left: 20px;
+    }
+
+    .success-message {
+        color: #2e7d32;
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
