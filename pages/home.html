@@ -11,63 +11,102 @@
 </head>
 <body>
     <div class="container">
+        <!-- Header com busca e menu burger -->
         <header class="header">
-            <h1><i class="fas fa-spider"></i> Spider</h1>
+            <div class="header-left">
+                <button class="menu-burger" id="menuBurger">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1><i class="fas fa-spider"></i> Spider</h1>
+            </div>
+            <div class="search-container">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Pesquisar" id="searchInput">
+                </div>
+                <div class="search-results" id="searchResults"></div>
+            </div>
             <div class="header-icons">
-                <i class="fas fa-plus-square" id="newPostBtn" title="Novo Post"></i>
-                <i class="fas fa-plus-circle" id="newStoryBtn" title="Novo Story"></i>
-                <i class="fas fa-heart" title="Atividade"></i>
-                <i class="fas fa-paper-plane" title="Mensagens"></i>
+                <i class="fas fa-plus-square" id="newPostBtn"></i>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-paper-plane"></i>
             </div>
         </header>
 
+        <!-- Menu lateral de configurações -->
+        <div class="side-menu" id="sideMenu">
+            <div class="menu-header">
+                <h2>Configurações</h2>
+                <button class="close-menu" id="closeMenu"><i class="fas fa-times"></i></button>
+            </div>
+            <ul class="menu-items">
+                <li><a href="./perfil.html"><i class="fas fa-user"></i> Meu Perfil</a></li>
+                <li><a href="./saved.html"><i class="fas fa-bookmark"></i> Salvos</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Configurações</a></li>
+                <li>
+                    <a href="#" id="darkModeToggle">
+                        <i class="fas fa-moon"></i> Tema Escuro
+                        <span class="toggle-switch">
+                            <span class="toggle-knob"></span>
+                        </span>
+                    </a>
+                </li>
+                <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+            </ul>
+        </div>
+
+        <!-- Stories -->
         <div class="stories-container" id="storiesContainer">
             <div class="stories-nav prev"><i class="fas fa-chevron-left"></i></div>
-            <div class="stories" id="storiesList">
-                <!-- Stories serão carregados aqui -->
-            </div>
+            <div class="stories" id="storiesList"></div>
             <div class="stories-nav next"><i class="fas fa-chevron-right"></i></div>
         </div>
 
-        <div class="posts-container" id="postsContainer">
-            <!-- Posts serão carregados aqui -->
-        </div>
+        <!-- Posts -->
+        <div class="posts-container" id="postsContainer"></div>
 
+        <!-- Footer/Navegação inferior -->
         <nav class="bottom-nav">
-            <a href="../index.html"><i class="fas fa-home"></i></a>
-            <a href="#"><i class="fas fa-search"></i></a>
-            <a href="#"><i class="fas fa-plus-square"></i></a>
-            <a href="#"><i class="fas fa-heart"></i></a>
-            <a href="./perfil.html"><i class="fas fa-user"></i></a>
+            <a href="../index.html" class="nav-item active" data-target="home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-item" data-target="search">
+                <i class="fas fa-search"></i>
+                <span>Pesquisar</span>
+            </a>
+            <a href="#" class="nav-item" id="newPostBtnMobile" data-target="new">
+                <i class="fas fa-plus-square"></i>
+                <span>Novo</span>
+            </a>
+            <a href="#" class="nav-item" data-target="activity">
+                <i class="fas fa-heart"></i>
+                <span>Atividade</span>
+            </a>
+            <a href="./perfil.html" class="nav-item" data-target="profile">
+                <i class="fas fa-user"></i>
+                <span>Perfil</span>
+            </a>
         </nav>
 
         <!-- Modal Novo Post -->
         <div class="modal" id="postModal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2>Nova Publicação</h2>
+                    <h2>Criar Nova Publicação</h2>
                     <span class="close">&times;</span>
                 </div>
                 <form id="postForm">
                     <div class="form-group">
-                        <textarea id="postDesc" placeholder="Escreva uma legenda..." rows="3"></textarea>
+                        <textarea id="postDesc" placeholder="Escreva uma legenda..." required></textarea>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="postLocation" placeholder="Localização (opcional)">
-                    </div>
-                    <div class="file-upload">
-                        <label for="postImage">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <span>Selecione uma imagem</span>
-                            <span id="fileName"></span>
-                        </label>
                         <input type="file" id="postImage" accept="image/*" required>
-                        <div class="image-preview" id="imagePreview"></div>
+                        <div id="imagePreview" class="preview-container"></div>
                     </div>
-                    <div id="postError" class="error-message"></div>
-                    <button type="submit" class="btn-primary">
+                    <button type="submit">
                         <span id="postButtonText">Publicar</span>
-                        <span id="postSpinner" class="spinner"><i class="fas fa-spinner fa-spin"></i></span>
+                        <span class="spinner"><i class="fas fa-circle-notch fa-spin"></i></span>
                     </button>
                 </form>
             </div>
@@ -77,27 +116,73 @@
         <div class="modal" id="storyModal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2>Novo Story</h2>
+                    <h2>Adicionar ao Story</h2>
                     <span class="close">&times;</span>
                 </div>
                 <form id="storyForm">
                     <div class="form-group">
-                        <textarea id="storyDesc" placeholder="Descrição (opcional)" rows="3"></textarea>
+                        <textarea id="storyDesc" placeholder="Adicione um texto..."></textarea>
                     </div>
-                    <div class="file-upload">
-                        <label for="storyImage">
-                            <i class="fas fa-camera"></i>
-                            <span>Selecione uma foto ou vídeo</span>
-                        </label>
+                    <div class="form-group">
                         <input type="file" id="storyImage" accept="image/*,video/*" required>
-                        <div class="media-preview" id="mediaPreview"></div>
+                        <div id="mediaPreview" class="preview-container"></div>
                     </div>
-                    <div id="storyError" class="error-message"></div>
-                    <button type="submit" class="btn-primary">
+                    <button type="submit">
                         <span id="storyButtonText">Publicar Story</span>
-                        <span id="storySpinner" class="spinner"><i class="fas fa-spinner fa-spin"></i></span>
+                        <span class="spinner"><i class="fas fa-circle-notch fa-spin"></i></span>
                     </button>
                 </form>
+            </div>
+        </div>
+
+        <!-- Modal de Comentários -->
+        <div class="modal" id="commentsModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Comentários</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="comments-list" id="commentsList">
+                    <!-- Comentários serão carregados aqui -->
+                </div>
+                <form id="commentForm">
+                    <div class="form-group">
+                        <input type="text" id="commentInput" placeholder="Adicione um comentário..." required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal de Compartilhamento -->
+        <div class="modal" id="shareModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Compartilhar</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="share-options">
+                    <div class="share-option">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </div>
+                    <div class="share-option">
+                        <i class="fab fa-facebook"></i>
+                        <span>Facebook</span>
+                    </div>
+                    <div class="share-option">
+                        <i class="fab fa-twitter"></i>
+                        <span>Twitter</span>
+                    </div>
+                    <div class="share-option">
+                        <i class="fas fa-envelope"></i>
+                        <span>E-mail</span>
+                    </div>
+                    <div class="share-option" id="copyLinkBtn">
+                        <i class="fas fa-link"></i>
+                        <span>Copiar Link</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -105,5 +190,9 @@
     <script type="module" src="../assets/js/api.js"></script>
     <script type="module" src="../assets/js/state-manager.js"></script>
     <script type="module" src="../assets/js/home.js"></script>
+    <script type="module" src="../assets/js/comments.js"></script>
+    <script type="module" src="../assets/js/search.js"></script>
+    <script type="module" src="../assets/js/settings.js"></script>
+    <script type="module" src="../assets/js/stories.js"></script>
 </body>
 </html>

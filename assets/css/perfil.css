@@ -1,104 +1,176 @@
-* {
-    margin: 0;
-    box-sizing: border-box;
-    padding: 0;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #ECDFF2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-}
-
-.container {
-    display: flex;
-    padding: 20px;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1200px;
-}
-
-.image-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #E1CAEC;
-    width: 600px;
-    height: 600px;
-    border-radius: 50px;
-}
-
-.image-section img {
-    width: 550px;
-    height: 550px;
-    object-fit: cover;
-    border-radius: 50px;
-}
-
-.profile-section {
-    width: 500px;
-    padding: 40px;
-    background-color: white;
-    border-radius: 50px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
+/* Adicione estas atualizações ao seu perfil.css existente */
 
 .profile-header {
-    margin-bottom: 30px;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #dbdbdb;
 }
 
-.username {
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 15px;
+    display: block;
+    border: 3px solid #53136C;
+}
+
+.profile-username {
     font-size: 24px;
-    color: #53136C;
+    font-weight: 600;
     margin-bottom: 5px;
 }
 
-.handle {
-    color: #6B3FA0;
-    margin-bottom: 20px;
-    font-size: 16px;
+.profile-bio {
+    padding: 15px;
+    text-align: center;
+    line-height: 1.5;
 }
 
-.stats {
+.profile-stats {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 30px;
+    padding: 15px 0;
+    border-top: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+    margin: 15px 0;
 }
 
 .stat {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .stat-value {
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 600;
     color: #53136C;
 }
 
 .stat-label {
     font-size: 14px;
-    color: #666;
+    color: #8e8e8e;
 }
 
-.divider {
-    height: 1px;
-    background-color: #E1CAEC;
-    margin: 20px 0;
+.edit-profile {
+    background: #53136C;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 10px 0;
+    width: 100%;
 }
 
-.profile-name {
-    font-size: 32px;
+.follow-btn {
+    background: #0095f6;
+}
+
+.following {
+    background: #dbdbdb;
+    color: #262626;
+}
+
+.profile-tabs {
+    display: flex;
+    border-top: 1px solid #dbdbdb;
+}
+
+.tab-button {
+    flex: 1;
+    padding: 15px 0;
+    text-align: center;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-weight: 600;
+    color: #8e8e8e;
+    cursor: pointer;
+}
+
+.tab-button.active {
     color: #53136C;
-    margin-bottom: 20px;
-    font-weight: bold;
+    border-bottom-color: #53136C;
 }
 
-.profile-name span {
-    display: block;
+.tab-button i {
+    margin-right: 5px;
+}
+
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+}
+
+.grid-item {
+    position: relative;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.post-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    color: white;
+}
+
+.post-overlay span {
+    margin: 0 10px;
+    font-weight: 600;
+}
+
+.grid-item:hover .post-overlay {
+    opacity: 1;
+}
+
+.empty-state, .error-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #8e8e8e;
+}
+
+.error-state {
+    color: #ed4956;
+}
+
+/* Tema escuro para o perfil */
+.dark-mode .profile-header,
+.dark-mode .profile-stats,
+.dark-mode .profile-tabs {
+    border-color: #333;
+}
+
+.dark-mode .profile-username,
+.dark-mode .tab-button,
+.dark-mode .stat-value {
+    color: #f1f1f1;
+}
+
+.dark-mode .tab-button.active {
+    color: #53136C;
+}
+
+.dark-mode .stat-label,
+.dark-mode .empty-state {
+    color: #aaa;
 }
